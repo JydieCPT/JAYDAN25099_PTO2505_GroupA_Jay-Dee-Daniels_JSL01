@@ -1,0 +1,142 @@
+/* Base and Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f4f7fd;
+  color: #000;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Main Layout */
+.wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background-color: #fff;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-right: 1px solid #e4ebfa;
+}
+
+/* Top Logo */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Board Selector */
+.boards {
+  flex-grow: 1;
+}
+
+.board-btn {
+  background-color: #635fc7;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 0.8rem 1rem;
+  font-weight: 500;
+  width: 100%;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+/* Main Board Area */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.add-task-btn {
+  background-color: #635fc7;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Columns Layout */
+.board {
+  display: flex;
+  gap: 2rem;
+  flex-grow: 1;
+  overflow-x: auto;
+}
+
+.column {
+  min-width: 280px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Column Header */
+.column-header {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot.todo { background-color: #49c4e5; }
+.dot.doing { background-color: #8471f2; }
+.dot.done  { background-color: #67e2ae; }
+
+/* Card */
+.card {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(54, 78, 126, 0.1);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
