@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
@@ -14,7 +14,7 @@ body {
   overflow: hidden;
 }
 
-/* Sidebar */
+/* Sidebar Navigation */
 nav {
   width: 260px;
   background-color: #fff;
@@ -23,6 +23,43 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+/* Kanban Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #635fc7;
+}
+
+.logo-bars {
+  display: flex;
+  gap: 4px;
+  margin-right: 8px;
+  align-items: center;
+}
+
+.logo-bars div {
+  height: 24px;
+  border-radius: 2px;
+  background-color: #635fc7;
+}
+
+.logo-bars div:nth-child(1) {
+  width: 4px;
+}
+
+.logo-bars div:nth-child(2) {
+  width: 4px;
+  opacity: 0.75;
+}
+
+.logo-bars div:nth-child(3) {
+  width: 4px;
+  opacity: 0.5;
 }
 
 nav h4 {
@@ -45,7 +82,7 @@ nav button {
   cursor: pointer;
 }
 
-/* Main Content Container */
+/* Main Content */
 .container {
   flex: 1;
   display: flex;
@@ -54,7 +91,6 @@ nav button {
   overflow: hidden;
 }
 
-/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -79,7 +115,7 @@ header button {
   cursor: pointer;
 }
 
-/* Columns Layout */
+/* Board Columns */
 .board-columns {
   display: flex;
   gap: 1.5rem;
@@ -87,7 +123,6 @@ header button {
   padding-bottom: 2rem;
 }
 
-/* Individual Column */
 .column {
   min-width: 280px;
   flex-shrink: 0;
@@ -127,7 +162,6 @@ header button {
   letter-spacing: 1px;
 }
 
-/* Task Cards */
 .tasks {
   display: flex;
   flex-direction: column;
