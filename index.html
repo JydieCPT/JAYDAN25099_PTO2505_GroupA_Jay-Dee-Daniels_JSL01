@@ -1,68 +1,192 @@
-<html>
-  <head>
-    <meta />
-    <meta />
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kanban Board</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Embedded CSS from earlier for demo/testing */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f7fd;
+      color: #000;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+    nav {
+      width: 260px;
+      background-color: #fff;
+      padding: 2rem 1.5rem;
+      border-right: 1px solid #e4ebfa;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    nav h4 {
+      font-size: 0.75rem;
+      color: #828fa3;
+      letter-spacing: 1px;
+      margin-bottom: 1rem;
+    }
+    nav button {
+      background-color: #635fc7;
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 24px;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+    }
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    header h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #2b2c37;
+    }
+    header button {
+      background-color: #635fc7;
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.875rem;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 24px;
+      cursor: pointer;
+    }
+    .board-columns {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 2rem;
+    }
+    .column {
+      min-width: 280px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .column-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .column-header span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .todo span {
+      background-color: #49c4e5;
+    }
+    .doing span {
+      background-color: #8471f2;
+    }
+    .done span {
+      background-color: #67e2ae;
+    }
+    .column-header h4 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #828fa3;
+      letter-spacing: 1px;
+    }
+    .tasks {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .task {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: #2b2c37;
+      box-shadow: 0 2px 6px rgba(54, 78, 126, 0.1);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+    }
+    .task:hover {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav>
+    <h4>ALL BOARDS (1)</h4>
+    <button>Launch Career</button>
+  </nav>
 
-  <body>
-    <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
-    <nav>
-      <div>
-        <h4>ALL BOARDS (1)</h4>
-        <button>Launch Career</button>
-      </div>
-    </nav>
+  <!-- Main Content -->
+  <div class="container">
+    <header>
+      <h2>Launch Career</h2>
+      <button>+ Add New Task</button>
+    </header>
 
-    <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->
-    <div>
-      <header>
-        <div>
-          <h2>Launch Career</h2>
+    <div class="board-columns">
+      <!-- TODO Column -->
+      <div class="column todo">
+        <div class="column-header">
+          <span></span>
+          <h4>TODO (4)</h4>
         </div>
-      </header>
+        <div class="tasks">
+          <div class="task">Launch Epic Career 🚀</div>
+          <div class="task">Conquer React 🧠</div>
+          <div class="task">Understand Databases 🧠</div>
+          <div class="task">Crush Frameworks 📗</div>
+        </div>
+      </div>
 
-      <div>
-        <main>
-          <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
-          <div>
-            <div>
-              <span></span>
-              <h4>TODO</h4>
-            </div>
-            <!-- Tasks container for TODO -->
-            <div>
-              <div>Launch Epic Career 🚀</div>
-              <div>Learn Data Structures and Algorithms 📚</div>
-            </div>
-          </div>
-          <!-- DOING Column -->
-          <div>
-            <div>
-              <span></span>
-              <h4>DOING</h4>
-            </div>
-            <!-- Tasks container for DOING -->
-            <div>
-              <div>Master JavaScript 💛</div>
-              <div>Keep on Going 🏆</div>
-            </div>
-          </div>
-          <!-- DONE Column -->
-          <div>
-            <div>
-              <span></span>
-              <h4>DONE</h4>
-            </div>
-            <!-- Tasks container for DONE -->
-            <div>
-              <div>Contribute to Open Source Projects 🌐</div>
-              <div>Build Portfolio Projects 🛠️</div>
-            </div>
-          </div>
-        </main>
+      <!-- DOING Column -->
+      <div class="column doing">
+        <div class="column-header">
+          <span></span>
+          <h4>DOING (2)</h4>
+        </div>
+        <div class="tasks">
+          <div class="task">Master JavaScript 💛</div>
+          <div class="task">Never Give Up 🏆</div>
+        </div>
+      </div>
+
+      <!-- DONE Column -->
+      <div class="column done">
+        <div class="column-header">
+          <span></span>
+          <h4>DONE (2)</h4>
+        </div>
+        <div class="tasks">
+          <div class="task">Explore ES6 Features 🚀</div>
+          <div class="task">Have fun 🍻</div>
+        </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
