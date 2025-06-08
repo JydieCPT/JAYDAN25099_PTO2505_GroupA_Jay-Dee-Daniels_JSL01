@@ -271,3 +271,79 @@ input:checked + .slider:before {
 .hide-sidebar:hover {
   color: #635fc7;
 }
+
+@media (max-width: 768px) {
+  nav {
+    display: none !important;
+    width: 0;
+    padding: 0;
+    border: none;
+  }
+
+  body {
+    flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .container {
+    width: 100%;
+    flex: 1;
+    padding: 0; /* remove all padding */
+    overflow: visible;
+  }
+
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  header h2 {
+    font-size: 1rem;
+  }
+
+  header button {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .board-columns {
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+    padding: 0; /* no padding at all */
+    align-items: stretch; /* ensures full width */
+  }
+
+  .column {
+    width: 100%;
+    min-width: unset;
+    margin: 0;
+    padding: 0 1rem; /* optional: adds slight horizontal breathing room */
+  }
+
+  .tasks {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .task {
+    width: 100%;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+}
