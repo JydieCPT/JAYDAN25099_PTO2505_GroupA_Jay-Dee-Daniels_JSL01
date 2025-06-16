@@ -1,307 +1,92 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kanban Board</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: #f4f7fd;
-      color: #000112;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&display=swap"
+      rel="stylesheet"
+    />
 
-    nav {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      width: 250px;
-      background-color: #ffffff;
-      padding: 1.5rem 1rem;
-      border-right: 1px solid #e4ebfa;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/favicon.svg"
+    />
+    <title>Kanban Task Management</title>
+  </head>
 
-    .logo {
-      display: flex;
-      align-items: center;
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
+  <body>
+    <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
+    <nav class="side-bar" id="side-bar-div">
+      <div id="side-logo-div">
+        <img id="logo" src="./assets/logo-light.svg" alt="logo-light" />
+      </div>
 
-    .logo-bars div {
-      width: 4px;
-      height: 16px;
-      background-color: #635fc7;
-      margin-right: 3px;
-      display: inline-block;
-    }
+      <div class="boards-nav-links-div" id="boards-nav-links-div">
+        <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
+        <button class="board-btn">Launch Career</button>
+      </div>
+    </nav>
 
-    .container {
-      margin-left: 250px;
-      padding: 2rem;
-    }
-
-    .board-columns {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .column {
-      background-color: #f4f7fd;
-      border-radius: 8px;
-      flex: 1;
-      padding: 1rem;
-    }
-
-    .task {
-      background-color: #ffffff;
-      padding: 1rem;
-      border-radius: 6px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      margin-bottom: 0.8rem;
-    }
-
-    button {
-      background-color: #635fc7;
-      color: white;
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 20px;
-      cursor: pointer;
-    }
-
-    /* Sidebar Bottom Controls */
-    .sidebar-bottom {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .theme-toggle {
-      background-color: #f4f7fd;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.9rem;
-    }
-
-    .theme-toggle .icon {
-      font-size: 1.2rem;
-      margin-right: 0.5rem;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 40px;
-      height: 20px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0;
-      right: 0; bottom: 0;
-      background-color: #ccc;
-      border-radius: 20px;
-      transition: 0.4s;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 14px;
-      width: 14px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      border-radius: 50%;
-      transition: 0.4s;
-    }
-
-    .switch input:checked + .slider {
-      background-color: #635fc7;
-    }
-
-    .switch input:checked + .slider:before {
-      transform: translateX(20px);
-    }
-
-    .hide-sidebar {
-      background: none;
-      color: #828fa3;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .hide-sidebar:hover {
-      background-color: #e4ebfa;
-    }
-
-    /* Modal Styling */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-content {
-      background-color: #ffffff;
-      padding: 2rem;
-      border-radius: 8px;
-      width: 400px;
-      position: relative;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-    }
-
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 0.5rem;
-      margin-top: 0.25rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-  </style>
-</head>
-<body>
-  <!-- Sidebar -->
-  <nav>
-    <div>
-      <div class="logo">
-        <div class="logo-bars">
-          <div></div><div></div><div></div>
+    <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->
+    <div id="layout">
+      <header id="header" class="sticky-header">
+        <div class="header-name-div">
+          <img
+            src="./assets/favicon.svg"
+            alt="logo-mobile"
+            class="logo-mobile"
+          />
+          <h2 class="header-board-name" id="header-board-name">
+            Launch Career
+          </h2>
         </div>
-        <span style="margin-left: 0.5rem;">kanban</span>
-      </div>
+      </header>
 
-      <h4>ALL BOARDS (1)</h4>
-      <button>Launch Career</button>
-    </div>
-
-    <!-- Bottom-left controls -->
-    <div class="sidebar-bottom">
-      <div class="theme-toggle">
-        <span class="icon">🌞</span>
-        <span>Dark Mode</span>
-        <label class="switch">
-          <input type="checkbox" id="darkModeToggle" />
-          <span class="slider"></span>
-        </label>
-      </div>
-
-      <button class="hide-sidebar">
-        <span class="icon">👈</span>
-        Hide Sidebar
-      </button>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
-  <div class="container">
-    <header>
-      <h2>Launch Career</h2>
-      <button id="addTaskBtn">+ Add New Task</button>
-    </header>
-
-    <div class="board-columns">
-      <!-- TODO Column -->
-      <div class="column todo">
-        <h4>TODO (4)</h4>
-        <div class="task">Launch Epic Career 🚀</div>
-        <div class="task">Conquer React 🧠</div>
-        <div class="task">Understand Databases 🧠</div>
-        <div class="task">Crush Frameworks 📗</div>
-      </div>
-
-      <!-- DOING Column -->
-      <div class="column doing">
-        <h4>DOING (2)</h4>
-        <div class="task">Master JavaScript 💛</div>
-        <div class="task">Never Give Up 🏆</div>
-      </div>
-
-      <!-- DONE Column -->
-      <div class="column done">
-        <h4>DONE (2)</h4>
-        <div class="task">Explore ES6 Features 🚀</div>
-        <div class="task">Have fun 🍻</div>
+      <div class="container">
+        <main class="card-column-main">
+          <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
+          <div class="column-div" data-status="todo">
+            <div id="todo-head-div" class="column-head-div">
+              <span class="dot" id="todo-dot"></span>
+              <h4 id="toDoText" class="columnHeader">TODO (4)</h4>
+            </div>
+            <!-- Tasks container for TODO -->
+            <div class="tasks-container">
+              <div class="task-div">Launch Epic Career 🚀</div>
+              <div class="task-div">Conquer React⚛️</div>
+              <div class="task-div">Understand Databases⚙️</div>
+              <div class="task-div">Crush Frameworks🖼️</div>
+            </div>
+          </div>
+          <!-- DOING Column -->
+          <div class="column-div" data-status="doing">
+            <div id="doing-head-div" class="column-head-div">
+              <span class="dot" id="doing-dot"></span>
+              <h4 id="doingText" class="columnHeader">DOING (2)</h4>
+            </div>
+            <!-- Tasks container for DOING -->
+            <div class="tasks-container">
+              <div class="task-div">Master JavaScript 💛</div>
+              <div class="task-div">Never Give Up 🏆</div>
+            </div>
+          </div>
+          <!-- DONE Column -->
+          <div class="column-div" data-status="done">
+            <div id="done-head-div" class="column-head-div">
+              <span class="dot" id="done-dot"></span>
+              <h4 id="doneText" class="columnHeader">DONE (2)</h4>
+            </div>
+            <!-- Tasks container for DONE -->
+            <div class="tasks-container">
+              <div class="task-div">Explore ES6 Features 🚀</div>
+              <div class="task-div">Have fun 🥳</div>
+            </div>
+          </div>
+        </main>
       </div>
     </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal" id="taskModal">
-    <div class="modal-content">
-      <span class="close" id="closeModal">&times;</span>
-      <h3>Add New Task</h3>
-      <form id="taskForm">
-        <label>Title</label>
-        <input type="text" required placeholder="e.g. Take chilled break" />
-        <label>Description</label>
-        <textarea required placeholder="e.g. Drink coffee, walk the dog..."></textarea>
-        <label>Status</label>
-        <select>
-          <option value="todo">Todo</option>
-          <option value="doing">Doing</option>
-          <option value="done">Done</option>
-        </select>
-        <button type="submit">Create Task</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- JS -->
-  <script>
-    const modal = document.getElementById('taskModal');
-    const openBtn = document.getElementById('addTaskBtn');
-    const closeBtn = document.getElementById('closeModal');
-
-    openBtn.onclick = () => modal.style.display = 'flex';
-    closeBtn.onclick = () => modal.style.display = 'none';
-    window.onclick = (e) => {
-      if (e.target === modal) modal.style.display = 'none';
-    };
-  </script>
-</body>
+  </body>
 </html>
